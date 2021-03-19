@@ -1,4 +1,9 @@
-
+/* eslint-disable import/no-anonymous-default-export */
+import {
+    FETCH_MOVIES,
+    FETCH_MOVIES_SUCCESS,
+    FETCH_MOVIES_ERROR
+} from '../actions/index';
 
 const initialState = {
     movies: [],
@@ -13,6 +18,19 @@ export default (state = initialState, action ) => {
                 ...state,
                 loadingCharacters: true
             };
-        default: return state;
+        case FETCH_MOVIES_SUCCESS: 
+            return {
+                ...state,
+                movies: action.payload,
+                loadingCharacters: false
+            }
+        case FETCH_MOVIES_ERROR:
+            return {
+                ...state,
+                loadingCharacters: false,
+                errorMessage: action.payload
+            };
+        default: 
+        return state;
     };
 };

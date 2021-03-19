@@ -1,6 +1,14 @@
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { fetchMovies } from './store/actions';
+
 import './App.css';
 
-function App() {
+
+
+function App(props) {
+  const { fetchMovies, loadingMovies, errorMessage } = props;
+
   return (
     <div className="App">
       <header className="App-header">
@@ -21,4 +29,11 @@ function App() {
   );
 }
 
-export default App;
+function mapStateToProps(state){
+  return {
+    loadingMovies: state.loadingMovies,
+    errorMessage: state.errorMessage,
+  };
+}
+
+export default connect(mapStateToProps, { fetchMovies })(App);
