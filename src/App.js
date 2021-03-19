@@ -1,30 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { fetchMovies } from './store/actions';
+import MovieList from './components/MovieList';
 
-import './App.css';
-
-
+// import './App.css';
 
 function App(props) {
   const { fetchMovies, loadingMovies, errorMessage } = props;
 
+  useEffect(() => {
+    fetchMovies()
+  }, [fetchMovies])
+
   return (
     <div className="App">
       <header className="App-header">
-        
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Studio Ghibli Films</h1>
       </header>
+      <div>
+        {!loadingMovies ? (<MovieList />) : ( <div className="loading">loading movies...</div>
+        )}
+      </div>
+        {errorMessage !== "" ? <div>{errorMessage}</div> : null }
     </div>
   );
 }
