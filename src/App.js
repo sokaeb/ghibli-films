@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchMovies } from './store/actions';
 import MovieList from './components/MovieList';
 
-// import './App.css';
+import './App.css';
 
 function App(props) {
   const { fetchMovies, loadingMovies, errorMessage } = props;
@@ -15,7 +15,7 @@ function App(props) {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Studio Ghibli Films</h1>
+        <img src="ghibli.png" alt="" className="ghibliImg"></img>
       </header>
       <div>
         {!loadingMovies ? (<MovieList />) : ( <div className="loading">loading movies...</div>
